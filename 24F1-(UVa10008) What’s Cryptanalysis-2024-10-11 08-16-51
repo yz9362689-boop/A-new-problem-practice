@@ -1,0 +1,54 @@
+#include <iostream>
+#include <string>
+#include <algorithm> //使用sort函数
+#include <cctype> //使用toupper和isalpha
+
+using namespace std;
+
+typedef struct alpha {
+	char name;
+	int count;
+}A;
+
+//排序判定规则
+bool cmp(A x, A y) {
+	if (x.count != y.count) {
+		return x.count > y.count;
+	}
+	return x.name < y.name;
+}
+
+ int main() {
+    int n;
+    if (!(cin >> n)) return 0;
+
+    // 🔥【终极修复】：不用普通的 ignore()，改用这句无敌的清空命令！
+    // 它的意思是：管你后面残留了几个回车换行符，通通给我清空，直到遇到干净的下一行！
+    while (cin.get() != '\n');
+
+    A arr[26];
+    for (int i = 0; i < 26; i++) {
+        arr[i].name = 'A' + i;
+        arr[i].count = 0;
+    }
+
+    // 接下来老老实实读 n 行
+    for (int i = 0; i < n; i++) {
+        string line;
+        getline(cin, line);
+        for (char c : line) {
+            if (isalpha(c)) {
+                arr[toupper(c) - 'A'].count++;
+            }
+        }
+    }
+
+    sort(arr, arr + 26, cmp);
+
+    for (int i = 0; i < 26; i++) {
+        if (arr[i].count > 0) {
+            cout << arr[i].name << " " << arr[i].count << endl;
+        }
+    }
+    return 0;
+}
