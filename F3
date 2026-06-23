@@ -1,0 +1,15 @@
+#include <iostream>
+#include <cmath>
+int main(){
+long long n;
+while(cin>>n && n!=0){
+long long r = sqrt(n);
+if( r*r==n ||(r+1)*(r+1)==n){
+cout<<YES<<endl;
+  }
+else{
+cout<<NO<<endl;
+  }
+}
+return 0;
+}
