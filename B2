@@ -1,0 +1,39 @@
+#include <iostream>
+
+using namespace std;
+int main() {
+	double H, U, D, F;
+	while (cin >> H >> D >> U >> F && H != 0) {
+		double current_height = 0.0;//当前高度
+		double current_climb = U;//当日白天所爬高度
+		double fatigue_loss = U * (F / 100);
+		int day = 0;
+		bool status_determined = false;//判断当前是否进入任务完成状态
+
+		while (!status_determined) {
+			day++;
+
+			if (current_climb > 0) {
+				current_height += current_climb;
+			}
+			//判断是否脱离成功
+			if (current_height > H) {
+				cout << "success on day" << day << endl;
+				status_determined = true;
+				break;
+			}
+			//黑夜下滑
+			current_height -= D;
+			//判断是否脱离失败
+			if (current_height < 0) {
+				cout << "failure on day" << day << endl;
+				status_determined = true;
+				break;
+			}
+			//每日爬行值减去疲劳值
+			current_climb -= fatigue_loss;
+		}
+	}
+	return 0;
+}
+
