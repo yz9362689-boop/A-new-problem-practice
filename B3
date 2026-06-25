@@ -37,15 +37,15 @@ cin>>L>>N;
 		}
 		if (len >= 2 && word[len - 1] == 'y' && !is_vowel(word[len - 2])) {
 			word.pop_back();
-			word += 'ies';
+			word += “ies“;
 			cout << word;
 		}
-		if (word[len - 1] == 'o' || word[len - 1] == 's' || word[len - 1] == 'x' || len >= 2 && word[len - 2] == 'c' && word[len -1 ] == 'h' || len >= 2 && word[len - 2] == 's' && word[len -1 ] == 'h') {
+		else if (word[len - 1] == 'o' || word[len - 1] == 's' || word[len - 1] == 'x' || len >= 2 && word[len - 2] == 'c' && word[len -1 ] == 'h' || len >= 2 && word[len - 2] == 's' && word[len -1 ] == 'h') {
 			word += "es";
 			cout << word;
 		}
 		else {
-			word += "s";
+			word += 's';
 			cout << word;
 		}
 	}
