@@ -1,0 +1,52 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+bool is_vowel(char c) {
+	return(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
+}
+int main() {
+	int L, N;
+	//L是特殊词汇数量，N是普通词汇数量，定义两个动态数组分别存入特殊词汇的单数和复数形式
+	vector<string>spec_sing(L);
+	vector<string>spec_plur(L);
+	for (int i = 0;i < L;i++) {
+		cin >> spec_sing[i] >> spec_plur[i];
+	}
+
+	for (int j = 0;j < N;j++) {
+		string word;
+		cin >> word;
+
+		int len = word.length();
+		bool found = false;
+		//判断词汇是否为特殊词汇，是则结束，否则继续判断
+		for (int k = 0;k < L;k++) {
+			if (word == spec_sing[k]) {
+				cout << spec_plur[k] << '\n';
+				found = true;
+				break;
+			}
+
+		}
+		if (found) {
+			continue;
+		}
+		if (len >= 2 && word[len - 1] == 'y' && !is_vowel(word[len - 2])) {
+			word.pop_back();
+			word += 'ies';
+			cout << word;
+		}
+		if (word[len - 1] == 'o' || word[len - 1] == 's' || word[len - 1] == 'x' || len >= 2 && word[len - 2] == 'c' && word[len -1 ] == 'h' || len >= 2 && word[len - 2] == 's' && word[len -1 ] == 'h') {
+			word += "es";
+			cout << word;
+		}
+		else {
+			word += "s";
+			cout << word;
+		}
+	}
+	return 0;
+}
