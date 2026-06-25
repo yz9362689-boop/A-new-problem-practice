@@ -9,6 +9,7 @@ bool is_vowel(char c) {
 }
 int main() {
 	int L, N;
+cin>>L>>N;
 	//L是特殊词汇数量，N是普通词汇数量，定义两个动态数组分别存入特殊词汇的单数和复数形式
 	vector<string>spec_sing(L);
 	vector<string>spec_plur(L);
